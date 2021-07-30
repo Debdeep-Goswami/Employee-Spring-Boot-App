@@ -10,7 +10,6 @@ public class Role {
 	private String roleName;
 	private String roleDescription;
 	
-	
 	public String getRoleName() {
 		return roleName;
 	}
