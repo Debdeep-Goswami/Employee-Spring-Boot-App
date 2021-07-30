@@ -27,6 +27,14 @@ public class UserService {
 	private PasswordEncoder passwordencoder;
 	
 	public User registerNewUser(User user) {
+		
+		Role role=roleDao.findById("User").get();
+		Set<Role> roles=new HashSet<>();
+		roles.add(role);
+		user.setRole(roles);
+		
+		user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+		
 		return userDao.save(user);
 	}
 	
@@ -86,17 +94,17 @@ public class UserService {
 		
 		//_____________________Creating Normal User_______________
 		
-		User normalUser=new User();
-		normalUser.setUserFirstName("Baladev");
-		normalUser.setUserLastName("Goswami");
-		normalUser.setUserName("user1");
-		normalUser.setUserPassword(getEncodedPassword("password"));
-		
-		Set<Role> userRoles= new HashSet<>();
-		userRoles.add(userRole);
-		
-		normalUser.setRole(userRoles);
-		userDao.save(normalUser);	
+//		User normalUser=new User();
+//		normalUser.setUserFirstName("Baladev");
+//		normalUser.setUserLastName("Goswami");
+//		normalUser.setUserName("user1");
+//		normalUser.setUserPassword(getEncodedPassword("password"));
+//		
+//		Set<Role> userRoles= new HashSet<>();
+//		userRoles.add(userRole);
+//		
+//		normalUser.setRole(userRoles);
+//		userDao.save(normalUser);	
 		
 		//___________________ End of Creating Normal User_________
 		
